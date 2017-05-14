@@ -11,7 +11,7 @@ module Byebug
          2:   #
          3:   # Toy class to test subdebuggers inside evaluation prompt
          4:   #
-         5:   class #{example_class}
+         5:   class ExampleClass
          6:     def self.a
          7:       byebug
          8:     end
@@ -25,19 +25,19 @@ module Byebug
     end
 
     def test_subdebugger_stops_at_correct_point_when_invoked_through_byebug_call
-      enter "debug #{example_class}.a"
+      enter 'debug ExampleClass.a'
 
       debug_code(program) { assert_equal 8, frame.line }
     end
 
     def test_subdebugger_stops_at_correct_point_when_invoked_from_breakpoint
-      enter "break #{example_class}.a", "debug #{example_class}.a"
+      enter 'break ExampleClass.a', 'debug ExampleClass.a'
 
       debug_code(program) { assert_equal 6, frame.line }
     end
 
     def test_subdebugger_goes_back_to_previous_debugger_after_continue
-      enter "debug #{example_class}.a", 'continue'
+      enter 'debug ExampleClass.a', 'continue'
 
       debug_code(program) { assert_equal 13, frame.line }
     end

@@ -11,7 +11,7 @@ module Byebug
          2:    #
          3:    # Toy class to test the method command.
          4:    #
-         5:    class #{example_class}
+         5:    class ExampleClass
          6:      def initialize
          7:        @a = 'b'
          8:        @c = 'd'
@@ -28,14 +28,14 @@ module Byebug
         19:
         20:    byebug
         21:
-        22:    a = #{example_class}.new
+        22:    a = ExampleClass.new
         23:    a.bla
         24:  end
       EOC
     end
 
     def test_method_shows_instance_methods_of_a_class
-      enter 'cont 7', "method #{example_class}"
+      enter 'cont 7', 'method ExampleClass'
       debug_code(program)
 
       check_output_includes('bla')

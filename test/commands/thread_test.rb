@@ -11,7 +11,7 @@ module Byebug
          2:    #
          3:    # Toy class to test threading
          4:    #
-         5:    class #{example_class}
+         5:    class ExampleClass
          6:      attr_accessor :lock
          7:
          8:      def initialize
@@ -40,7 +40,7 @@ module Byebug
         31:
         32:    byebug
         33:
-        34:    t = #{example_class}.new
+        34:    t = ExampleClass.new
         35:    t.launch
         36:    t.kill
         37:  end

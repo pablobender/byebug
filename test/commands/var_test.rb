@@ -11,7 +11,7 @@ module Byebug
          2:    #
          3:    # Toy class to test variable evaluation.
          4:    #
-         5:    class #{example_class}
+         5:    class ExampleClass
          6:      SOMECONST = 'foo' unless defined?(SOMECONST)
          7:
          8:      def initialize
@@ -26,7 +26,7 @@ module Byebug
         17:      end
         18:    end
         19:
-        20:    v = #{example_class}.new
+        20:    v = ExampleClass.new
         21:    v.run(2)
         22:  end
       EOC
@@ -40,7 +40,7 @@ module Byebug
     end
 
     def test_var_const_shows_constants_in_class_or_module
-      enter "var const Byebug::#{example_class}"
+      enter 'var const Byebug::ExampleClass'
       debug_code(program)
 
       check_output_includes 'SOMECONST = foo'

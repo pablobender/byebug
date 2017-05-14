@@ -11,7 +11,7 @@ module Byebug
          2:    #
          3:    # Toy class to test post mortem functionality
          4:    #
-         5:    class #{example_class}
+         5:    class ExampleClass
          6:      def a
          7:        fail 'blabla'
          8:      end
@@ -19,7 +19,7 @@ module Byebug
         10:
         11:    byebug
         12:
-        13:    c = #{example_class}.new
+        13:    c = ExampleClass.new
         14:    c.a
         15:  end
       EOC

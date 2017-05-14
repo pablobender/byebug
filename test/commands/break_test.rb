@@ -11,7 +11,7 @@ module Byebug
           2:    #
           3:    # Toy class to test breakpoints
           4:    #
-          5:    class #{example_class}
+          5:    class ExampleClass
           6:      def self.a(n)
           7:        2.times do
           8:          n += 1
@@ -23,7 +23,7 @@ module Byebug
          14:      end
          15:    end
          16:
-         17:    module #{example_module}
+         17:    module ExampleModule
          18:      def self.c
          19:        1
          20:      end
@@ -31,51 +31,51 @@ module Byebug
          22:
          23:    byebug
          24:
-         25:    #{example_class}.new.b
-         26:    #{example_class}.a(1)
-         27:    #{example_module}.c
+         25:    ExampleClass.new.b
+         26:    ExampleClass.a(1)
+         27:    ExampleModule.c
          28:  end
       EOC
     end
 
     def test_break_with_instance_method_stops_at_correct_place
-      enter "break #{example_class}#b", 'cont'
+      enter 'break ExampleClass#b', 'cont'
 
       debug_code(program) { assert_location example_path, 12 }
     end
 
     def test_break_with_namespaced_instance_method_stops_at_correct_place
-      enter "break Byebug::#{example_class}#b", 'cont'
+      enter 'break Byebug::ExampleClass#b', 'cont'
 
       debug_code(program) { assert_location example_path, 12 }
     end
 
     def test_break_with_class_method_stops_at_correct_place
-      enter "break #{example_class}.a", 'cont'
+      enter 'break ExampleClass.a', 'cont'
 
       debug_code(program) { assert_location example_path, 6 }
     end
 
     def test_break_with_namespaced_class_method_stops_at_correct_place
-      enter "break Byebug::#{example_class}.a", 'cont'
+      enter 'break Byebug::ExampleClass.a', 'cont'
 
       debug_code(program) { assert_location example_path, 6 }
     end
 
     def test_break_with_module_method_stops_at_correct_place
-      enter "break #{example_module}.c", 'cont'
+      enter 'break ExampleModule.c', 'cont'
 
       debug_code(program) { assert_location(example_path, 18) }
     end
 
     def test_break_with_namespaced_module_method_stops_at_correct_place
-      enter "break Byebug::#{example_module}.c", 'cont'
+      enter 'break Byebug::ExampleModule.c', 'cont'
 
       debug_code(program) { assert_location example_path, 18 }
     end
 
     def test_break_with_a_method_does_not_stop_at_blocks_in_the_method
-      enter "break #{example_class}.a", 'cont', 'break 8', 'cont'
+      enter 'break ExampleClass.a', 'cont', 'break 8', 'cont'
 
       debug_code(program) { assert_location example_path, 8 }
     end
@@ -118,7 +118,7 @@ module Byebug
          2:    #
          3:    # Toy class to test breakpoints
          4:    #
-         5:    class #{example_class}
+         5:    class ExampleClass
          6:      def self.a
          7:        y = 1
          8:        z = 2
@@ -128,7 +128,7 @@ module Byebug
         12:
         13:    byebug
         14:
-        15:    #{example_class}.a
+        15:    ExampleClass.a
         16:  end
       EOC
     end
@@ -306,7 +306,7 @@ module Byebug
          2:    #
          3:    # Toy class to test byebug at the end of a method
          4:    #
-         5:    class #{example_class}
+         5:    class ExampleClass
          6:      def a
          7:        byebug
          8:      end
@@ -338,7 +338,7 @@ module Byebug
          2:    #
          3:    # Toy class to test byebug at the end of a block
          4:    #
-         5:    class #{example_class}
+         5:    class ExampleClass
          6:      def method_that_yields(b)
          7:        yield(b)
          8:        0
@@ -374,7 +374,7 @@ module Byebug
          2:    #
          3:    # Toy class to test byebug at the end of a class
          4:    #
-         5:    class #{example_class}
+         5:    class ExampleClass
          6:      def a
          7:        0
          8:      end

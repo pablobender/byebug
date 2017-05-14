@@ -11,7 +11,7 @@ module Byebug
          2:    #
          3:    # Toy class to test stepping.
          4:    #
-         5:    class #{example_class}
+         5:    class ExampleClass
          6:      def self.add_four(num)
          7:        byebug
          8:        num += 4
@@ -20,7 +20,7 @@ module Byebug
         11:      end
         12:    end
         13:
-        14:    res = #{example_class}.add_four(7)
+        14:    res = ExampleClass.add_four(7)
         15:
         16:    res + 1
         17:  end
@@ -70,13 +70,13 @@ module Byebug
          4:    #
          5:    # Toy class to test next.
          6:    #
-         7:    class #{example_class}
+         7:    class ExampleClass
          8:      def initialize
          9:        loop { return }
         10:      end
         11:    end
         12:
-        13:    #{example_class}.new
+        13:    ExampleClass.new
         14:
         15:    'Bye!'
         16:  end
@@ -100,7 +100,7 @@ module Byebug
          2:    #
          3:    # Toy class to test cases where next should not stay in frame
          4:    #
-         5:    class #{example_class}
+         5:    class ExampleClass
          6:      define_method 'method1' do
          7:        return 1
          8:      end
@@ -113,7 +113,7 @@ module Byebug
         15:
         16:    byebug
         17:
-        18:    #{example_class}.new.foo
+        18:    ExampleClass.new.foo
         19:
         20:    'bye!'
         21:  end
@@ -137,7 +137,7 @@ module Byebug
          2:    #
          3:    # Toy class to test stepping and rescue interaction.
          4:    #
-         5:    class #{example_class}
+         5:    class ExampleClass
          6:      def self.raise_from_c
          7:        unknown
          8:      rescue NameError
@@ -157,20 +157,20 @@ module Byebug
         22:
         23:    byebug
         24:
-        25:    #{example_class}.raise_from_c
-        26:    #{example_class}.raise_from_ruby
+        25:    ExampleClass.raise_from_c
+        26:    ExampleClass.raise_from_ruby
         27:  end
       EOC
     end
 
     def test_next_steps_over_rescue_when_raising_from_c_method
-      enter "break Byebug::#{example_class}.raise_from_c", 'cont', 'next 2'
+      enter 'break Byebug::ExampleClass.raise_from_c', 'cont', 'next 2'
 
       debug_code(program) { assert_equal 9, frame.line }
     end
 
     def test_next_steps_over_rescue_when_raising_from_ruby_method
-      enter "break Byebug::#{example_class}.raise_from_ruby", 'cont', 'next 2'
+      enter 'break Byebug::ExampleClass.raise_from_ruby', 'cont', 'next 2'
 
       debug_code(program) { assert_equal 15, frame.line }
     end
@@ -186,7 +186,7 @@ module Byebug
          2:    #
          3:    # Toy class to test the combination of "up" and "next" commands.
          4:    #
-         5:    class #{example_class}
+         5:    class ExampleClass
          6:      def a
          7:        byebug
          8:        r = b(c)
@@ -204,7 +204,7 @@ module Byebug
         20:      end
         21:    end
         22:
-        23:    #{example_class}.new.a
+        23:    ExampleClass.new.a
         24:  end
       EOC
     end
@@ -226,7 +226,7 @@ module Byebug
          2:    #
          3:    # Toy class to test cases where next should not stay in frame
          4:    #
-         5:    class #{example_class}
+         5:    class ExampleClass
          6:      def finite_loop
          7:        n = 0
          8:        loop do
@@ -247,7 +247,7 @@ module Byebug
         23:
         24:    byebug
         25:
-        26:    #{example_class}.new.finite_loop
+        26:    ExampleClass.new.finite_loop
         27:  end
       EOC
     end

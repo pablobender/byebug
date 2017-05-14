@@ -11,7 +11,7 @@ module Byebug
          2:    #
          3:    # Toy class to test global variable tracing
          4:    #
-         5:    class #{example_class}
+         5:    class ExampleClass
          6:      def with_verbose(value)
          7:        previous = $VERBOSE
          8:        $VERBOSE = value
@@ -21,7 +21,7 @@ module Byebug
         12:      end
         13:    end
         14:
-        15:    #{example_class}.new.with_verbose(true) do
+        15:    ExampleClass.new.with_verbose(true) do
         16:      byebug
         17:      $VERBOSE = false
         18:      $VERBOSE ||= true

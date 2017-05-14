@@ -11,7 +11,7 @@ module Byebug
          2:    #
          3:    # Toy class to test breakpoints
          4:    #
-         5:    class #{example_class}
+         5:    class ExampleClass
          6:      def self.a(num)
          7:        num + 1
          8:      end
@@ -27,8 +27,8 @@ module Byebug
         18:
         19:    z = 5
         20:
-        21:    #{example_class}.new.b
-        22:    #{example_class}.a(y + z)
+        21:    ExampleClass.new.b
+        22:    ExampleClass.a(y + z)
         23:  end
       EOC
     end

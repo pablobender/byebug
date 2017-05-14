@@ -11,7 +11,7 @@ module Byebug
          2:    #
          3:    # Toy class to test backtraces.
          4:    #
-         5:    class #{example_class}
+         5:    class ExampleClass
          6:      def initialize(letter)
          7:        @letter = encode(letter)
          8:      end
@@ -26,7 +26,7 @@ module Byebug
         17:      end
         18:    end
         19:
-        20:    frame = #{example_class}.new('f')
+        20:    frame = ExampleClass.new('f')
         21:
         22:    frame
         23:  end

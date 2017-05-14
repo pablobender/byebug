@@ -11,7 +11,7 @@ module Byebug
          2:    #
          3:    # Toy class to test stepping.
          4:    #
-         5:    class #{example_class}
+         5:    class ExampleClass
          6:      def self.add_four(num)
          7:        num += 4
          8:        num
@@ -20,7 +20,7 @@ module Byebug
         11:
         12:    byebug
         13:
-        14:    res = #{example_class}.add_four(7)
+        14:    res = ExampleClass.add_four(7)
         15:
         16:    res + 1
         17:  end
@@ -50,7 +50,7 @@ module Byebug
          2:    #
          3:    # Toy class to test advanced stepping.
          4:    #
-         5:    class #{example_class}
+         5:    class ExampleClass
          6:      def self.add_three(num)
          7:        byebug
          8:        2.times do
@@ -62,7 +62,7 @@ module Byebug
         14:      end
         15:    end
         16:
-        17:    res = #{example_class}.add_three(7)
+        17:    res = ExampleClass.add_three(7)
         18:
         19:    res
         20:  end
@@ -92,7 +92,7 @@ module Byebug
          2:    #
          3:    # Toy class to test the combination of "up" and "next" commands.
          4:    #
-         5:    class #{example_class}
+         5:    class ExampleClass
          6:      def a
          7:        byebug
          8:        r = b(c)
@@ -110,7 +110,7 @@ module Byebug
         20:      end
         21:    end
         22:
-        23:    #{example_class}.new.a
+        23:    ExampleClass.new.a
         24:  end
       EOC
     end

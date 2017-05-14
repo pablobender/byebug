@@ -11,7 +11,7 @@ module Byebug
         2:    #
         3:    # Toy class to test breakpoints
         4:    #
-        5:    class #{example_class}
+        5:    class ExampleClass
         6:      def add_two(n)
         7:        byebug
         8:        n += 1
@@ -20,7 +20,7 @@ module Byebug
        11:      end
        12:    end
        13:
-       14:    #{example_class}.new.add_two(0)
+       14:    ExampleClass.new.add_two(0)
        15:  end
       EOC
     end

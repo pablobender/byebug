@@ -13,7 +13,7 @@ module Byebug
          2:    #
          3:    # Toy class to test backtraces.
          4:    #
-         5:    class #{example_class}
+         5:    class ExampleClass
          6:      def initialize(l)
          7:        @letter = encode(l)
          8:      end
@@ -28,7 +28,7 @@ module Byebug
         17:      end
         18:    end
         19:
-        20:    frame = #{example_class}.new('f')
+        20:    frame = ExampleClass.new('f')
         21:
         22:    frame
         23:  end
@@ -40,9 +40,9 @@ module Byebug
       debug_code(program)
 
       expected_output = prepare_for_regexp <<-TXT
-        --> #0  #{example_full_class}.to_int(str#String) at #{example_path}:16
-            #1  #{example_full_class}.encode(str#String) at #{example_path}:11
-            #2  #{example_full_class}.initialize(l#String) at #{example_path}:7
+        --> #0  Byebug::ExampleClass.to_int(str#String) at #{example_path}:16
+            #1  Byebug::ExampleClass.encode(str#String) at #{example_path}:11
+            #2  Byebug::ExampleClass.initialize(l#String) at #{example_path}:7
             ͱ-- #3  Class.new(*args) at #{example_path}:20
             #4  <module:Byebug> at #{example_path}:20
             #5  <top (required)> at #{example_path}:1
@@ -56,9 +56,9 @@ module Byebug
       debug_code(program)
 
       expected_output = prepare_for_regexp <<-TXT
-        --> #0  #{example_full_class}.to_int(str#String) at #{example_path}:16
-            #1  #{example_full_class}.encode(str#String) at #{example_path}:11
-            #2  #{example_full_class}.initialize(l#String) at #{example_path}:7
+        --> #0  Byebug::ExampleClass.to_int(str#String) at #{example_path}:16
+            #1  Byebug::ExampleClass.encode(str#String) at #{example_path}:11
+            #2  Byebug::ExampleClass.initialize(l#String) at #{example_path}:7
             ͱ-- #3  Class.new\(*args) at #{example_path}:20
             #4  <module:Byebug> at #{example_path}:20
             #5  <top (required)> at #{example_path}:1
@@ -87,7 +87,7 @@ module Byebug
       enter 'where'
       program = strip_line_numbers <<-EOP
          1:  module Byebug
-         2:    class #{example_full_class}
+         2:    class Byebug::ExampleClass
          3:      def foo
          4:        Object.new.instance_exec do
          5:          byebug
@@ -95,15 +95,15 @@ module Byebug
          7:      end
          8:     end
          9:
-        10:    #{example_full_class}.new.foo
+        10:    Byebug::ExampleClass.new.foo
         11:  end
       EOP
       debug_code(program)
 
       expected_output = prepare_for_regexp <<-TXT
-        --> #0  block in #{example_full_class}.block in foo at #{example_path}:6
+        --> #0  block in Byebug::ExampleClass.block in foo at #{example_path}:6
             #1  BasicObject.instance_exec(*args) at #{example_path}:4
-            #2  #{example_full_class}.foo at #{example_path}:4
+            #2  Byebug::ExampleClass.foo at #{example_path}:4
             #3  <module:Byebug> at #{example_path}:10
             #4  <top (required)> at #{example_path}:1
       TXT
@@ -126,9 +126,9 @@ module Byebug
         debug_code(program)
 
         expected_output = prepare_for_regexp <<-TXT
-          --> #0  #{example_full_class}.to_int(str#String) at #{example_path}:16
-              #1  #{example_full_class}.encode(str#String) at #{example_path}:11
-              #2  #{example_full_class}.initialize(l#String) at #{example_path}:7
+          --> #0  Byebug::ExampleClass.to_int(str#String) at #{example_path}:16
+              #1  Byebug::ExampleClass.encode(str#String) at #{example_path}:11
+              #2  Byebug::ExampleClass.initialize(l#String) at #{example_path}:7
               ͱ-- #3  Class.new(*args) at #{example_path}:20
               #4  <module:Byebug> at #{example_path}:20
               #5  <top (required)> at #{example_path}:1
@@ -161,9 +161,9 @@ module Byebug
       debug_code(program)
 
       expected_output = prepare_for_regexp <<-TXT
-        --> #0  #{example_full_class}.to_int(str#String) at ...
-            #1  #{example_full_class}.encode(str#String) at ...
-            #2  #{example_full_class}.initialize(l#String) at ...
+        --> #0  Byebug::ExampleClass.to_int(str#String) at ...
+            #1  Byebug::ExampleClass.encode(str#String) at ...
+            #2  Byebug::ExampleClass.initialize(l#String) at ...
             ͱ-- #3  Class.new(*args) at ...
             #4  <module:Byebug> at ...
             #5  <top (required)> at ...

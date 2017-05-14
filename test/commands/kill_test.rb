@@ -11,7 +11,7 @@ module Byebug
          2:    #
          3:    # Toy class to test signals
          4:    #
-         5:    class #{example_class}
+         5:    class ExampleClass
          6:      def self.kill_me
          7:        'dieeee'
          8:      end
@@ -19,7 +19,7 @@ module Byebug
         10:
         11:    byebug
         12:
-        13:    #{example_class}.kill_me
+        13:    ExampleClass.kill_me
         14:  end
       EOC
     end

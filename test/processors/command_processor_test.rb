@@ -62,7 +62,7 @@ module Byebug
          2:   #
          3:   # Toy class to test evaluation of unknown input
          4:   #
-         5:   class #{example_class}
+         5:   class ExampleClass
          6:     def inspect
          7:       'A very cool string representation'
          8:     end
@@ -108,7 +108,7 @@ module Byebug
     end
 
     def test_evaluation_results_on_unknown_input_prefer_inspect_over_to_s
-      enter "#{example_class}.new"
+      enter 'ExampleClass.new'
       debug_code(program)
 
       check_output_includes 'A very cool string representation'
@@ -141,7 +141,7 @@ module Byebug
          2:   #
          3:   # Toy class to test subdebuggers inside evaluation prompt
          4:   #
-         5:   class #{example_class}
+         5:   class ExampleClass
          6:     def self.m1
          7:       m2
          8:     end
@@ -153,7 +153,7 @@ module Byebug
         14:
         15:   byebug
         16:
-        17:   #{example_class}.m1
+        17:   ExampleClass.m1
         18:
         19:   'Bye!'
         20: end
@@ -183,13 +183,13 @@ module Byebug
          2:   #
          3:   # Toy class to test subdebuggers inside evaluation prompt
          4:   #
-         5:   class #{example_class}
+         5:   class ExampleClass
          6:     class_eval 'def self.a; 1 end'
          7:   end
          8:
          9:   byebug
         10:
-        11:   #{example_class}.a
+        11:   ExampleClass.a
         12:
         13:   'Bye!'
         14: end
@@ -220,7 +220,7 @@ module Byebug
           #
           # Toy class to test evaluation in Byebug's prompt
           #
-          class #{example_class}
+          class ExampleClass
             attr_accessor :thread
 
             def initialize
@@ -252,7 +252,7 @@ module Byebug
             end
           end
 
-          worker = #{example_class}.new
+          worker = ExampleClass.new
 
           byebug
 

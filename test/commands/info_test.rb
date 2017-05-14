@@ -11,7 +11,7 @@ module Byebug
          2:    #
          3:    # Toy class to test information about files.
          4:    #
-         5:    class #{example_class}
+         5:    class ExampleClass
          6:      def initialize
          7:        @foo = 'bar'
          8:        @bla = 'blabla'
@@ -31,7 +31,7 @@ module Byebug
         22:    end
         23:
         24:    byebug
-        25:    i = #{example_class}.new
+        25:    i = ExampleClass.new
         26:    i.b
         27:  end
       EOC

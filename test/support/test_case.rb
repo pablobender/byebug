@@ -58,8 +58,8 @@ module Byebug
     # Cleanup main Byebug namespace from dummy test classes and modules
     #
     def cleanup_namespace
-      force_remove_const(Byebug, example_class)
-      force_remove_const(Byebug, example_module)
+      force_remove_const(Byebug, 'ExampleClass')
+      force_remove_const(Byebug, 'ExampleModule')
     end
 
     #
@@ -77,27 +77,6 @@ module Byebug
     end
 
     #
-    # Fully namespaced example class
-    #
-    def example_full_class
-      "Byebug::#{example_class}"
-    end
-
-    #
-    # Name of the temporary test class
-    #
-    def example_class
-      "#{camelized_path}Class"
-    end
-
-    #
-    # Name of the temporary test module
-    #
-    def example_module
-      "#{camelized_path}Module"
-    end
-
-    #
     # Temporary folder where the test file lives
     #
     def example_folder
@@ -105,10 +84,6 @@ module Byebug
     end
 
     private
-
-    def camelized_path
-      camelize(File.basename(example_path, '.rb'))
-    end
 
     def delete_example_file
       File.unlink(example_file)
